@@ -6,7 +6,6 @@
 
 package com.orilore.ui;
 
-import java.awt.Color;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,13 +19,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.filechooser.FileSystemView;
 
 /**
  *
  * @author  __USER__
  */
 public class FrameMain extends javax.swing.JFrame {
+	private static final long serialVersionUID = 1L;
 
 	/** Creates new form FrameMain */
 	public FrameMain() {
@@ -41,6 +40,7 @@ public class FrameMain extends javax.swing.JFrame {
 	 */
 	//GEN-BEGIN:initComponents
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
+	@SuppressWarnings({ "unchecked", "rawtypes", "serial" })
 	private void initComponents() {
 
 		spTables = new javax.swing.JScrollPane();
@@ -196,7 +196,7 @@ public class FrameMain extends javax.swing.JFrame {
 		jLabel2.setText("Package");
 
 		txDao.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 12));
-		txDao.setText("com.orilore.daos");
+		txDao.setText("com.orilore.dao");
 		txDao.setToolTipText("\u8bf7\u8f93\u5165\u5b8c\u6574\u5305\u540d");
 
 		cbBiz.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 12));
@@ -212,7 +212,7 @@ public class FrameMain extends javax.swing.JFrame {
 		jLabel3.setText("Package");
 
 		txBiz.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 12));
-		txBiz.setText("com.orilore.bizs");
+		txBiz.setText("com.orilore.biz");
 		txBiz.setToolTipText("\u8bf7\u8f93\u5165\u5b8c\u6574\u5305\u540d");
 
 		javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(
@@ -386,7 +386,7 @@ public class FrameMain extends javax.swing.JFrame {
 		jLabel11.setText("Package");
 
 		txBiz1.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 12));
-		txBiz1.setText("com.orilore.mappers");
+		txBiz1.setText("com.orilore.mapper");
 		txBiz1.setToolTipText("\u8bf7\u8f93\u5165\u5b8c\u6574\u5305\u540d");
 
 		cbBiz2.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 12));
@@ -402,7 +402,7 @@ public class FrameMain extends javax.swing.JFrame {
 		jLabel12.setText("Package");
 
 		txBiz2.setFont(new java.awt.Font("Œ¢»Ì—≈∫⁄", 0, 12));
-		txBiz2.setText("com.orilore.bizs");
+		txBiz2.setText("com.orilore.biz");
 		txBiz2.setToolTipText("\u8bf7\u8f93\u5165\u5b8c\u6574\u5305\u540d");
 
 		javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(
@@ -987,6 +987,7 @@ public class FrameMain extends javax.swing.JFrame {
 			String pa = txPojo.getText();
 			String pb = txDao.getText();
 			String pc = txBiz.getText();
+			@SuppressWarnings("deprecation")
 			Object tabNames[] = this.lstTables.getSelectedValues();
 
 			if (tabNames == null || tabNames.length < 1) {
@@ -1026,6 +1027,7 @@ public class FrameMain extends javax.swing.JFrame {
 			String pa = txPojo1.getText();
 			String pb = txDao1.getText();
 			String pc = txBiz1.getText();
+			@SuppressWarnings("deprecation")
 			Object tabNames[] = this.lstTables.getSelectedValues();
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("driver", driver);
@@ -1064,7 +1066,7 @@ public class FrameMain extends javax.swing.JFrame {
 					this.txInfo.append("«Î ‰»ÎMapperΩ”ø⁄∞¸√˚!");
 					return;
 				}
-				message = DBTool.createInterface(path, tabNames, pa, pc);
+				message = DBTool.createInterface(path,conn, tabNames, pa, pc);
 				this.txInfo.append(message);
 			}
 			String pd = this.txBiz2.getText();
@@ -1073,7 +1075,7 @@ public class FrameMain extends javax.swing.JFrame {
 					this.txInfo.append("«Î ‰»Î“µŒÒ≤„¥˙¬Î∞¸√˚!");
 					return;
 				}
-				message = DBTool.createMyBatisBizs(path, tabNames, pd, pa, pc);
+				message = DBTool.createMyBatisBizs(path, conn, tabNames, pd, pa, pc);
 				this.txInfo.append(message);
 			}
 		}
@@ -1127,7 +1129,9 @@ public class FrameMain extends javax.swing.JFrame {
 	private javax.swing.JTabbedPane jTabbedPane1;
 	private javax.swing.JPanel jpOption;
 	private javax.swing.JLabel labUrl;
+	@SuppressWarnings("rawtypes")
 	private javax.swing.JComboBox lstDB;
+	@SuppressWarnings("rawtypes")
 	private javax.swing.JList lstTables;
 	private javax.swing.JScrollPane spInfo;
 	private javax.swing.JScrollPane spTables;
@@ -1164,6 +1168,7 @@ public class FrameMain extends javax.swing.JFrame {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void getTables() {
 		try {
 			ps = conn.prepareStatement(tables);
